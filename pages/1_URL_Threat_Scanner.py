@@ -1,6 +1,7 @@
 
 from pathlib import Path
 from urllib.parse import urlsplit
+from theme import load_neon_theme
 
 import joblib
 import streamlit as st
@@ -10,7 +11,7 @@ st.set_page_config(
     page_icon="🔗",
     layout="wide"
 )
-
+load_neon_theme()
 MODEL_PATH = (
     Path(__file__).resolve().parent.parent
     / "models"

@@ -1,5 +1,6 @@
 
 from pathlib import Path
+from theme import load_neon_theme
 import joblib
 import numpy as np
 import pandas as pd
@@ -13,7 +14,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
+load_neon_theme()
 st.markdown("""
 <style>
 .stApp {

@@ -1,0 +1,142 @@
+
+/* CyberSentinel AI - Safe Neon Circuit Theme */
+
+/* Background */
+.stApp {
+    background-color: #080f1e;
+    background-image:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(0, 160, 255, 0.12),
+            transparent 45%
+        ),
+        linear-gradient(
+            rgba(0, 180, 255, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 180, 255, 0.035) 1px,
+            transparent 1px
+        );
+    background-size:
+        auto,
+        55px 55px,
+        55px 55px;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: #0d1729;
+    border-right: 1px solid rgba(0, 190, 255, 0.18);
+}
+
+/* Headings */
+.stApp h1 {
+    color: #f4faff;
+    text-shadow: 0 0 18px rgba(0, 170, 255, 0.25);
+}
+
+.stApp h2,
+.stApp h3 {
+    color: #eaf7ff;
+}
+
+/* URL input */
+.stApp [data-testid="stTextInput"] input {
+    background-color: #101d33;
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+/* Buttons */
+.stApp .stButton button {
+    background-color: #087db6;
+    color: #ffffff;
+    border: 1px solid #14b8f4;
+    border-radius: 8px;
+}
+
+.stApp .stButton button:hover {
+    background-color: #009ee0;
+    color: #ffffff;
+    border-color: #51d6ff;
+}
+
+/* Metrics */
+.stApp [data-testid="stMetric"] {
+    background-color: rgba(12, 30, 54, 0.85);
+    border: 1px solid rgba(0, 180, 255, 0.22);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+/* Sidebar navigation */
+[data-testid="stSidebarNav"] a:hover {
+    background-color: rgba(0, 180, 255, 0.10);
+    border-radius: 8px;
+}
+
+/* More visible Neon Circuit background */
+.stApp {
+    background-image:
+        radial-gradient(
+            circle at 80% 15%,
+            rgba(0, 160, 255, 0.15),
+            transparent 50%
+        ),
+        linear-gradient(
+            rgba(0, 190, 255, 0.09) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 190, 255, 0.09) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        auto,
+        55px 55px,
+        55px 55px;
+}
+
+/* Consistent Neon Circuit background */
+.stApp {
+    background-color: #080f1e;
+    background-image:
+        radial-gradient(
+            circle at 80% 15%,
+            rgba(0, 160, 255, 0.14),
+            transparent 50%
+        ),
+        linear-gradient(
+            rgba(0, 190, 255, 0.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 190, 255, 0.08) 1px,
+            transparent 1px
+        );
+    background-size: auto, 55px 55px, 55px 55px;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: #0d1729;
+    border-right: 1px solid rgba(0, 190, 255, 0.2);
+}
+
+/* Glowing page titles */
+.stApp h1 {
+    text-shadow: 0 0 20px rgba(0, 190, 255, 0.3);
+}
+
+/* Premium metric cards */
+.stApp [data-testid="stMetric"] {
+    background: rgba(12, 30, 54, 0.85);
+    border: 1px solid rgba(0, 190, 255, 0.25);
+    border-radius: 12px;
+    padding: 16px;
+}

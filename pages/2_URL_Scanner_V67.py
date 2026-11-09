@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 from pdf_report_generator import generate_pdf_report
+from theme import load_neon_theme
 
 from datetime import datetime
 from url_scanner_v67 import scan_url
@@ -12,6 +13,7 @@ st.set_page_config(
     page_icon="🛡️",
     layout="wide"
 )
+load_neon_theme()
 
 # Initialize scan history
 if "url_scan_history" not in st.session_state:
