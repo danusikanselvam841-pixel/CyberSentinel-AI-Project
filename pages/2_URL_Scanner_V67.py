@@ -55,7 +55,7 @@ if st.button("🔍 Scan URL", type="primary"):
         "Prediction": result["prediction"].upper(),
         "Threat Score": f'{result["threat_score"]:.2f}%',
         "Risk Level": result["risk_level"],
-        "Model Version": "v6.7"
+        "Model Version": "url_detector_v1"
     }
 )
 

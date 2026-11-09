@@ -1,47 +1,39 @@
 
 import joblib
-import numpy as np
+from pathlib import Path
 
-from urllib.parse import urlsplit
 from url_validator_v68 import validate_url
-
-from url_features_v67 import prepare_features
 from url_parser_v67 import split_url
 
 
-MODEL_PATH = "models/url_threat_model_v67.pkl"
+# Load trained URL detection pipeline
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "models" / "url_threat_model.pkl"
 
 saved = joblib.load(MODEL_PATH)
-
-model = saved["model"]
-host_vectorizer = saved["hostname_vectorizer"]
-path_vectorizer = saved["path_vectorizer"]
+model = saved["pipeline"]
 
 
 def scan_url(url):
+    # Validate URL
     url = validate_url(url)
 
+    # Extract URL information
     hostname, path = split_url(url)
-   
 
     if not hostname:
         raise ValueError("Invalid URL.")
 
-    X = prepare_features(
-        [url],
-        host_vectorizer,
-        path_vectorizer,
-        fit=False
-    )
+    # Pipeline handles TF-IDF automatically
+    prediction = model.predict([url])[0]
+    probabilities = model.predict_proba([url])[0]
 
-    prediction = model.predict(X)[0]
+    classes = list(model.classes_)
 
-    probabilities = model.predict_proba(X)[0]
-
-    benign_index = list(model.classes_).index("benign")
+    benign_index = classes.index("benign")
 
     threat_score = float(
-        1 - probabilities[benign_index]
+        1.0 - probabilities[benign_index]
     )
 
     if threat_score >= 0.80:
@@ -60,45 +52,18 @@ def scan_url(url):
         "risk_level": risk_level,
         "class_scores": {
             str(label): round(float(score) * 100, 2)
-            for label, score in zip(model.classes_, probabilities)
+            for label, score in zip(classes, probabilities)
         }
     }
 
 
 if __name__ == "__main__":
+    test_url = "https://example.com"
 
-    print("=" * 55)
-    print("CYBERSENTINEL AI V6.7 - URL THREAT SCANNER")
-    print("=" * 55)
+    result = scan_url(test_url)
 
-    while True:
-        url = input("\nEnter URL (or 'exit'): ").strip()
-
-        if url.lower() == "exit":
-            break
-
-        try:
-            result = scan_url(url)
-
-            print("\n" + "-" * 55)
-            print("URL:", result["url"])
-            print("Hostname:", result["hostname"])
-            print("Path:", result["path"])
-            print("Prediction:", result["prediction"])
-            print("Threat score:", result["threat_score"], "%")
-            print("Risk level:", result["risk_level"])
-
-            print("\nCLASS SCORES")
-
-            for label, score in result["class_scores"].items():
-                print(f"{label:<15}: {score:.2f}%")
-
-            print(
-                "\nNote: Scores are uncalibrated model estimates, "
-                "not verified safety probabilities."
-            )
-
-            print("-" * 55)
-
-        except ValueError as error:
-            print("Error:", error)
+    print("URL:", result["url"])
+    print("Prediction:", result["prediction"])
+    print("Threat Score:", result["threat_score"])
+    print("Risk Level:", result["risk_level"])
+    print("Class Scores:", result["class_scores"])
