@@ -140,3 +140,198 @@
     border-radius: 12px;
     padding: 16px;
 }
+
+/* CyberSentinel AI - Neon Header */
+[data-testid="stHeader"] {
+    background: #071c33 !important;
+    border-bottom: 1px solid rgba(0, 190, 255, 0.25);
+}
+
+/* Header toolbar */
+[data-testid="stToolbar"] {
+    background: transparent !important;
+}
+
+/* CyberSentinel AI — Premium Background */
+
+/* Remove square grid and use soft neon lighting */
+.stApp {
+    background-color: #060d1b !important;
+
+    background-image:
+        radial-gradient(
+            ellipse at 85% 15%,
+            rgba(0, 150, 255, 0.17),
+            transparent 48%
+        ),
+        radial-gradient(
+            ellipse at 10% 85%,
+            rgba(0, 95, 180, 0.12),
+            transparent 55%
+        ),
+        linear-gradient(
+            135deg,
+            #060d1b 0%,
+            #071629 55%,
+            #050b17 100%
+        ) !important;
+
+    background-size: cover !important;
+    background-attachment: fixed;
+}
+
+/* Seamless top header */
+[data-testid="stHeader"] {
+    background: #071629 !important;
+    border-bottom: 1px solid rgba(0, 190, 255, 0.12);
+}
+
+/* Elegant headings */
+.stApp h1 {
+    color: #f5fbff;
+    text-shadow: 0 0 18px rgba(0, 180, 255, 0.22);
+}
+
+/* Softer neon buttons */
+.stApp .stButton button {
+    background: linear-gradient(135deg, #087cb4, #009bd5);
+    border: 1px solid rgba(50, 210, 255, 0.45);
+    border-radius: 10px;
+    color: white;
+}
+
+/* Glass-style metric cards */
+.stApp [data-testid="stMetric"] {
+    background: rgba(12, 28, 48, 0.85);
+    border: 1px solid rgba(0, 180, 255, 0.20);
+    border-radius: 14px;
+    padding: 18px;
+}
+
+/* CyberSentinel futuristic circuit background */
+.stApp {
+    background-color: #060e1d !important;
+    background-image:
+        url("circuit_pattern.svg"),
+        radial-gradient(
+            ellipse at 85% 20%,
+            rgba(0, 145, 230, 0.17),
+            transparent 55%
+        ),
+        linear-gradient(
+            135deg,
+            #060e1d,
+            #07192b
+        ) !important;
+    background-repeat: no-repeat !important;
+    background-position:
+        right top,
+        center,
+        center !important;
+    background-size:
+        75% auto,
+        cover,
+        cover !important;
+}
+
+/* CyberSentinel AI - Circuit Visibility Fix */
+
+.stApp {
+    background-color: #06101f !important;
+
+    background-image:
+        url("circuit_pattern.svg"),
+        radial-gradient(
+            ellipse at 85% 20%,
+            rgba(0, 170, 255, 0.20),
+            transparent 55%
+        ),
+        linear-gradient(
+            135deg,
+            #06101f,
+            #071a30
+        ) !important;
+
+    background-repeat:
+        no-repeat,
+        no-repeat,
+        no-repeat !important;
+
+    background-position:
+        right top,
+        center,
+        center !important;
+
+    background-size:
+        1100px 800px,
+        cover,
+        cover !important;
+}
+
+/* CyberSentinel AI - Mobile Responsive Design */
+
+@media screen and (max-width: 768px) {
+
+    /* Mobile background */
+    .stApp {
+        background-size:
+            700px auto,
+            cover,
+            cover !important;
+
+        background-position:
+            right top,
+            center,
+            center !important;
+    }
+
+    /* Main content spacing */
+    .block-container {
+        padding: 4rem 1rem 2rem !important;
+    }
+
+    /* Responsive headings */
+    .stApp h1 {
+        font-size: 1.9rem !important;
+        line-height: 1.25 !important;
+    }
+
+    .stApp h2 {
+        font-size: 1.4rem !important;
+    }
+
+    .stApp h3 {
+        font-size: 1.15rem !important;
+    }
+
+    /* Mobile-friendly inputs */
+    .stApp [data-testid="stTextInput"] input {
+        width: 100%;
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    /* Touch-friendly buttons */
+    .stApp .stButton button {
+        min-height: 44px;
+        max-width: 100%;
+    }
+
+    /* Responsive metric cards */
+    .stApp [data-testid="stMetric"] {
+        padding: 12px;
+        min-width: 0;
+    }
+
+    /* Prevent text overflow */
+    .stApp [data-testid="stMetricValue"] {
+        font-size: 1.5rem;
+        overflow-wrap: anywhere;
+    }
+
+    /* Responsive tables */
+    .stApp [data-testid="stDataFrame"] {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+}

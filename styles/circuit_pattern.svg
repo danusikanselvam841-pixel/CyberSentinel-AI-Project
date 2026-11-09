@@ -1,0 +1,37 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="900" height="650"
+     viewBox="0 0 900 650">
+  <defs>
+    <linearGradient id="circuit" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#00d9ff" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#00bfff" stop-opacity=".95"/>
+    </linearGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+  <g fill="none" stroke="url(#circuit)" stroke-width="2">
+    <path d="M900 80 H720 L660 140 H510 L450 200 H330"/>
+    <path d="M900 155 H790 L710 235 H550 L490 295"/>
+    <path d="M900 310 H800 L720 390 H610"/>
+    <path d="M900 460 H760 L690 530 H480"/>
+    <path d="M900 560 H820 L770 610 H650"/>
+    <path d="M760 0 V75 L690 145 H620"/>
+    <path d="M850 0 V115 L790 175"/>
+  </g>
+  <g fill="#00cfff">
+    <circle cx="330" cy="200" r="4"/>
+    <circle cx="490" cy="295" r="4"/>
+    <circle cx="610" cy="390" r="4"/>
+    <circle cx="480" cy="530" r="4"/>
+    <circle cx="650" cy="610" r="4"/>
+    <circle cx="620" cy="145" r="3"/>
+  </g>
+  <g fill="#00cfff" opacity=".45" filter="url(#glow)">
+    <circle cx="330" cy="200" r="9"/>
+    <circle cx="490" cy="295" r="9"/>
+    <circle cx="610" cy="390" r="9"/>
+    <circle cx="480" cy="530" r="9"/>
+  </g>
+</svg>
