@@ -1,0 +1,43 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environment
+.venv/
+venv/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Datasets
+data/
+datasets/
+*.csv
+
+# Trained model artifacts
+*.pkl
+*.joblib
+
+# Generated reports
+*.pdf
+
+# Temporary files
+*.log
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local backup scripts
+*_backup.py
+app_backup.py
