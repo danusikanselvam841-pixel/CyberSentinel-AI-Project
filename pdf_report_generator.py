@@ -236,7 +236,7 @@ def draw_background(c):
 # HEADER
 # ==========================================================
 
-def draw_header(c, generated_at):
+def draw_header(c, generated_at, result):
     center_text(
         c, PAGE_W / 2, 757,
         "CYBERSENTINEL AI",
@@ -263,7 +263,7 @@ def draw_header(c, generated_at):
 
     right_text(
         c, PAGE_W - MARGIN, 699,
-        "MODEL v6.7",
+        f"MODEL {result.get('model_version', 'unknown')}",
         BODY_BOLD_FONT, 7.5, CYAN
     )
 
@@ -387,7 +387,7 @@ def draw_url_information(c, result):
         ("Hostname", result.get("hostname", "N/A")),
         ("Path", result.get("path", "/")),
         ("Validation", "Input format checks passed"),
-        ("Model Version", "v6.7"),
+        ("Model Version", str(result.get("model_version", "unknown"))),
     ]
 
     total_h = header_h + len(rows) * row_h
@@ -638,7 +638,7 @@ def generate_pdf_report(result):
     )
 
     draw_background(c)
-    draw_header(c, generated_at)
+    draw_header(c, generated_at, result)
     draw_overview(c, result)
     draw_url_information(c, result)
     draw_classification(c, result)

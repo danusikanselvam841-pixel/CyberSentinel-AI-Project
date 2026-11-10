@@ -5,7 +5,7 @@ from pdf_report_generator import generate_pdf_report
 from theme import load_neon_theme
 
 from datetime import datetime
-from url_scanner_v67 import scan_url
+from url_scanner_v67 import scan_url, MODEL_VERSION
 
 
 st.set_page_config(
@@ -55,7 +55,7 @@ if st.button("🔍 Scan URL", type="primary"):
         "Prediction": result["prediction"].upper(),
         "Threat Score": f'{result["threat_score"]:.2f}%',
         "Risk Level": result["risk_level"],
-        "Model Version": "url_detector_v1"
+        "Model Version": MODEL_VERSION
     }
 )
 

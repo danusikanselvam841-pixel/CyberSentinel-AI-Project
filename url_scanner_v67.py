@@ -12,7 +12,7 @@ MODEL_PATH = BASE_DIR / "models" / "url_threat_model.pkl"
 
 saved = joblib.load(MODEL_PATH)
 model = saved["pipeline"]
-
+MODEL_VERSION = saved.get("model_version", "unknown")
 
 def scan_url(url):
     # Validate URL
@@ -44,6 +44,7 @@ def scan_url(url):
         risk_level = "LOWER MODEL SCORE"
 
     return {
+        "model_version": str(MODEL_VERSION),
         "url": url,
         "hostname": hostname,
         "path": path,
