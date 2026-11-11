@@ -21,7 +21,7 @@ security analysis reports.
 
 ## 🧠 Machine Learning
 
-Current URL detection model: v6.7
+Current deployed URL detection model: url_detector_v1
 
 The classifier uses character-level TF-IDF features
 from URL hostnames and paths.
@@ -46,10 +46,17 @@ not verified website safety probabilities.
 
 A low threat score does not guarantee safety.
 A high threat score does not confirm malicious activity.
+Known limitation: The current experimental model can
+incorrectly classify legitimate websites as phishing
+or other threats (false positives).
+
+Model scores are not calibrated probabilities and
+should not be used as the sole basis for security decisions.
 
 ## 📌 Project Status
 
-Under active development.
+Live demo deployed on Streamlit Community Cloud.
+The URL detection model remains experimental.
 
 ## 📄 License
 
