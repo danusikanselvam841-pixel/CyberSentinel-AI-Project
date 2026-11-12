@@ -37,7 +37,7 @@ def scan_url(url):
     )
 
     if threat_score >= 0.80:
-        risk_level = "HIGH MODEL SCORE"
+        risk_level = "MODEL FLAG - VERIFY"
     elif threat_score >= 0.50:
         risk_level = "NEEDS REVIEW"
     else:
