@@ -75,8 +75,8 @@ if st.button("🔍 Scan URL", type="primary"):
 
             col3.write("**Risk Level**")
 
-            if result["risk_level"] == "HIGH MODEL SCORE":
-                col3.error("HIGH MODEL SCORE")
+            if result["risk_level"] in ("HIGH MODEL SCORE", "MODEL FLAG - VERIFY"):
+                col3.error(result["risk_level"])
 
             elif result["risk_level"] == "NEEDS REVIEW":
                 col3.warning("NEEDS REVIEW")
@@ -84,7 +84,7 @@ if st.button("🔍 Scan URL", type="primary"):
             else:
                 col3.info("LOWER MODEL SCORE")
 
-            if result["risk_level"] == "HIGH MODEL SCORE":
+            if result["risk_level"] in ("HIGH MODEL SCORE", "MODEL FLAG - VERIFY"):
                 st.error(
                     "High model threat score. "
                     "Avoid trusting this URL without verification."
