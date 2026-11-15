@@ -98,3 +98,8 @@ License not yet selected.
 - Download PDF security reports.
 
 Note: AI predictions do not guarantee website safety.
+
+## Live Demo
+
+[Open CyberSentinel AI Web Application](https://cybersentinel-ai-project-z2dkbiovppvvyduqlkyrra.streamlit.app/)
+
