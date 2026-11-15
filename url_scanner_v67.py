@@ -1,6 +1,7 @@
 
 import joblib
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from url_validator_v68 import validate_url
 from url_parser_v67 import split_url
@@ -43,8 +44,47 @@ def scan_url(url):
     else:
         risk_level = "LOWER MODEL SCORE"
 
+
+    # CYBERSENTINEL_REVIEW_SAFEGUARD
+    # Do not change the raw model prediction or class scores.
+    parsed = urlsplit(url)
+
+    official_homepages = {
+        "google.com",
+        "www.google.com",
+        "microsoft.com",
+        "www.microsoft.com",
+        "wikipedia.org",
+        "www.wikipedia.org",
+        "example.com",
+        "www.example.com",
+    }
+
+    exact_homepage = (
+        parsed.scheme == "https"
+        and parsed.netloc.lower() in official_homepages
+        and parsed.path in ("", "/")
+        and not parsed.query
+        and not parsed.fragment
+    )
+
+    review_required = bool(
+        exact_homepage and prediction != "benign"
+    )
+
+    display_prediction = (
+        "UNVERIFIED"
+        if review_required
+        else str(prediction).upper()
+    )
+
+    if review_required:
+        risk_level = "MODEL RESULT UNVERIFIED"
+
     return {
         "model_version": str(MODEL_VERSION),
+        "review_required": review_required,
+        "display_prediction": display_prediction,
         "url": url,
         "hostname": hostname,
         "path": path,

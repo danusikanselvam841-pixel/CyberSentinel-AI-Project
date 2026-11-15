@@ -52,7 +52,7 @@ if st.button("🔍 Scan URL", type="primary"):
             "%Y-%m-%d %H:%M:%S %z"
         ),
         "URL": result["url"],
-        "Prediction": result["prediction"].upper(),
+        "Prediction": result["display_prediction"],
         "Threat Score": f'{result["threat_score"]:.2f}%',
         "Risk Level": result["risk_level"],
         "Model Version": MODEL_VERSION
@@ -65,7 +65,7 @@ if st.button("🔍 Scan URL", type="primary"):
 
             col1.metric(
                 "Prediction",
-                result["prediction"].upper()
+                result["display_prediction"]
             )
 
             col2.metric(
@@ -75,7 +75,9 @@ if st.button("🔍 Scan URL", type="primary"):
 
             col3.write("**Risk Level**")
 
-            if result["risk_level"] in ("HIGH MODEL SCORE", "MODEL FLAG - VERIFY"):
+            if result["review_required"]:
+                col3.warning("MODEL RESULT UNVERIFIED")
+            elif result["risk_level"] in ("HIGH MODEL SCORE", "MODEL FLAG - VERIFY"):
                 col3.error(result["risk_level"])
 
             elif result["risk_level"] == "NEEDS REVIEW":
@@ -84,7 +86,14 @@ if st.button("🔍 Scan URL", type="primary"):
             else:
                 col3.info("LOWER MODEL SCORE")
 
-            if result["risk_level"] in ("HIGH MODEL SCORE", "MODEL FLAG - VERIFY"):
+            if result["review_required"]:
+                st.warning(
+                    "Possible model false positive on an official homepage. "
+                    "The raw AI prediction is "
+                    f"{result['prediction'].upper()}. "
+                    "Website safety has NOT been independently verified."
+                )
+            elif result["risk_level"] in ("HIGH MODEL SCORE", "MODEL FLAG - VERIFY"):
                 st.error(
                     "High model threat score. "
                     "Avoid trusting this URL without verification."
@@ -130,7 +139,10 @@ if st.button("🔍 Scan URL", type="primary"):
             
             
             # Generate PDF report for the current URL
-            pdf_bytes = generate_pdf_report(result)
+            pdf_result = dict(result)
+            if result["review_required"]:
+                pdf_result["prediction"] = "unverified"
+            pdf_bytes = generate_pdf_report(pdf_result)
 
             st.download_button(
                 label="📄 Download PDF Security Report",
