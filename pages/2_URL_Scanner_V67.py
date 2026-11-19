@@ -21,11 +21,11 @@ if "url_scan_history" not in st.session_state:
 
 
 st.title("🛡️ CyberSentinel AI")
-st.subheader("Advanced URL Threat Scanner")
+st.subheader("Experimental URL Text Classifier")
 
 st.caption(
-    "AI-powered URL classification using "
-    "hostname and path features."
+    "Experimental URL classification based on text features. "
+    "This is not an independently verified security scan."
 )
 
 url = st.text_input(
@@ -61,19 +61,26 @@ if st.button("🔍 Scan URL", type="primary"):
 
             st.divider()
 
+            st.warning(
+                "MODEL-ONLY RESULT - NOT A VERIFIED SECURITY VERDICT. "
+                "PHISHING predictions may be false positives. "
+                "BENIGN predictions may miss actual threats. "
+                "Verify URLs using independent security sources."
+            )
+
             col1, col2, col3 = st.columns([1, 1, 1.5])
 
             col1.metric(
-                "Prediction",
+                "Unverified Model Label",
                 result["display_prediction"]
             )
 
             col2.metric(
-                "Model Threat Score",
+                "Uncalibrated Model Score",
                 f'{result["threat_score"]:.2f}%'
             )
 
-            col3.write("**Risk Level**")
+            col3.write("**Model Flag Level (Unverified)**")
 
             if result["review_required"]:
                 col3.warning("MODEL RESULT UNVERIFIED")
@@ -123,7 +130,7 @@ if st.button("🔍 Scan URL", type="primary"):
             st.write("**Hostname:**", result["hostname"])
             st.write("**Path:**", result["path"])
 
-            st.subheader("AI Class Scores")
+            st.subheader("Uncalibrated AI Class Scores")
 
             for label, score in result["class_scores"].items():
                 st.write(f"{label.title()}: {score:.2f}%")
@@ -145,9 +152,9 @@ if st.button("🔍 Scan URL", type="primary"):
             pdf_bytes = generate_pdf_report(pdf_result)
 
             st.download_button(
-                label="📄 Download PDF Security Report",
+                label="📄 Download PDF (UNVERIFIED model output)",
                 data=pdf_bytes,
-                file_name="CyberSentinel_URL_Security_Report.pdf",
+                file_name="CyberSentinel_Unverified_Model_Report.pdf",
                 mime="application/pdf",
                 width="stretch"
             )

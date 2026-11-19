@@ -245,7 +245,7 @@ def draw_header(c, generated_at, result):
 
     center_text(
         c, PAGE_W / 2, 734,
-        "ADVANCED URL THREAT ANALYSIS REPORT",
+        "EXPERIMENTAL URL MODEL REPORT",
         HEADING_FONT, 9, MUTED
     )
 
@@ -267,6 +267,12 @@ def draw_header(c, generated_at, result):
         BODY_BOLD_FONT, 7.5, CYAN
     )
 
+    text(
+        c, MARGIN, 681,
+        "WARNING: NOT A VERIFIED SECURITY VERDICT - MODEL OUTPUT ONLY",
+        BODY_BOLD_FONT, 8, AMBER
+    )
+
 
 # ==========================================================
 # THREAT OVERVIEW
@@ -275,7 +281,7 @@ def draw_header(c, generated_at, result):
 def draw_overview(c, result):
     section_title(
         c, 669,
-        "THREAT ANALYSIS OVERVIEW"
+        "MODEL CLASSIFICATION OVERVIEW"
     )
 
     x = MARGIN
@@ -306,9 +312,9 @@ def draw_overview(c, result):
     ).upper()
 
     labels = [
-        "AI PREDICTION",
-        "MODEL THREAT SCORE",
-        "RISK LEVEL"
+        "UNVERIFIED MODEL LABEL",
+        "UNCALIBRATED MODEL SCORE",
+        "MODEL FLAG (UNVERIFIED)"
     ]
 
     values = [
@@ -343,7 +349,7 @@ def draw_overview(c, result):
             c, cx, 602,
             value,
             font, font_size,
-            score_color(score) if i == 1 else WHITE
+            AMBER if i == 1 else WHITE
         )
 
     # Risk indicator
@@ -353,7 +359,7 @@ def draw_overview(c, result):
         PANEL_ALT, 5
     )
 
-    c.setFillColor(score_color(score))
+    c.setFillColor(AMBER)
     c.roundRect(
         MARGIN, 538,
         4, 30, 2,
@@ -362,7 +368,7 @@ def draw_overview(c, result):
 
     text(
         c, MARGIN + 13, 549,
-        f"RISK INDICATOR: {risk}",
+        f"MODEL FLAG (NOT VERIFIED): {risk}",
         BODY_BOLD_FONT, 8, WHITE
     )
 
@@ -463,7 +469,7 @@ def draw_url_information(c, result):
 def draw_classification(c, result):
     section_title(
         c, 299,
-        "AI CLASSIFICATION SCORES"
+        "UNCALIBRATED CLASS SCORES"
     )
 
     scores = result.get("class_scores") or {}
@@ -498,13 +504,13 @@ def draw_classification(c, result):
 
     text(
         c, x + 12, top - 18,
-        "THREAT CATEGORY",
+        "MODEL CATEGORY",
         HEADING_FONT, 8.5, CYAN
     )
 
     right_text(
         c, x + CONTENT_W - 15, top - 18,
-        "MODEL SCORE",
+        "MODEL SCORE (UNCALIBRATED)",
         HEADING_FONT, 8.5, CYAN
     )
 
@@ -565,7 +571,7 @@ def draw_disclaimer(c):
     )
 
     disclaimer = (
-        "This report contains uncalibrated machine-learning "
+        "This experimental report contains uncalibrated machine-learning "
         "model estimates, not verified website safety "
         "probabilities. CyberSentinel AI does not visit "
         "the URL or inspect live website content. "
@@ -597,7 +603,7 @@ def draw_footer(c):
 
     text(
         c, MARGIN, 29,
-        "CYBERSENTINEL AI | URL THREAT INTELLIGENCE",
+        "CYBERSENTINEL AI | EXPERIMENTAL MODEL REPORT",
         BODY_FONT, 6.5, MUTED
     )
 
@@ -627,11 +633,11 @@ def generate_pdf_report(result):
     )
 
     c.setTitle(
-        "CyberSentinel AI - URL Threat Analysis"
+        "CyberSentinel AI - Experimental URL Model Report"
     )
 
     c.setAuthor("CyberSentinel AI")
-    c.setSubject("AI URL Threat Analysis Report")
+    c.setSubject("Unverified URL classification from an experimental model")
 
     generated_at = datetime.now().astimezone().strftime(
         "%Y-%m-%d %H:%M:%S %z"
